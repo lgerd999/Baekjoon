@@ -1,0 +1,27 @@
+# https://www.acmicpc.net/problem/15654
+
+import sys
+input = sys.stdin.readline
+
+def dfs(path):
+    if len(path) > M:
+        return
+
+    if len(path) == M:
+        result.append(path)
+        return
+    
+    for i in range(N):
+        if num[i] not in path:            
+            dfs(path+[num[i]])            
+            
+    return result
+
+result = []
+N,M = map(int,input().split())
+num = list(map(int,input().split()))
+num.sort()
+
+ans = dfs([])
+for i in ans:
+    print(*i) 
