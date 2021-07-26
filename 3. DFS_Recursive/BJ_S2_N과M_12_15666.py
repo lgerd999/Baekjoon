@@ -1,4 +1,4 @@
-# https://www.acmicpc.net/problem/15657
+# https://www.acmicpc.net/problem/15666
 
 import sys
 input = sys.stdin.readline
@@ -7,12 +7,14 @@ def dfs(path):
     if len(path) > M:
         return
 
-    if len(path) == M:        
+    if len(path) == M:      
+        if path in result:
+            return  
         result.append(path)
         return
     
-    for i in range(N):        
-        if path and path[-1] > num[i] : # 비내림 차순 A1 <= A2 <= ... <= Ak
+    for i in range(N):            
+        if path and num[i] < path[-1] :
             continue
         dfs(path+[num[i]])            
               
@@ -29,16 +31,12 @@ for i in ans:
 
 '''
 4 2
-9 8 7 1
+9 7 9 1
 
 1 1
 1 7
-1 8
 1 9
 7 7
-7 8
 7 9
-8 8
-8 9
 9 9
-'''    
+'''
